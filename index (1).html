@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Jogo dos Dinos — Sorteador Oficial</title>
+<title>Jogo dos Dinos — Sorteador Oficial V6</title>
 <style>
 :root{
   --bg:#050907;--panel:#0b1510;--panel2:#102017;--line:#294a35;
@@ -33,10 +33,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;ba
 .panel-head{padding:13px 15px;border-bottom:1px solid #24482f;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .panel-head h2{margin:0;font-size:16px;text-transform:uppercase;letter-spacing:.9px}.tag{font-size:10px;border:1px solid #355f3e;color:#a4b6a8;border-radius:20px;padding:4px 7px}
 .panel-body{padding:13px}.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-.dino{position:relative;min-height:160px;border:1px solid #315f3b;border-radius:13px;background:linear-gradient(160deg,#102219,#07100b 74%);padding:8px;overflow:hidden;transition:.16s transform,.16s border,.16s box-shadow}
+.dino{position:relative;min-height:174px;border:1px solid #315f3b;border-radius:13px;background:linear-gradient(160deg,#102219,#07100b 74%);padding:8px;overflow:hidden;transition:.16s transform,.16s border,.16s box-shadow}
 .dino:hover{transform:translateY(-2px);border-color:#76b94d}.dino.winner{border:2px solid var(--gold);box-shadow:0 0 0 3px #ffc53122,0 0 35px #ffc53166;transform:scale(1.025);z-index:3}
 .dino .num{position:absolute;left:8px;top:6px;font-weight:950;font-size:17px;color:var(--gold);z-index:2}
-.dino img{width:100%;height:94px;object-fit:contain;filter:drop-shadow(0 9px 9px #000b);margin-top:5px}.fallback{display:none;height:94px;align-items:center;justify-content:center;font-size:42px;opacity:.65}
+.dino img{width:100%;height:108px;object-fit:contain;filter:drop-shadow(0 9px 9px #000b);margin-top:5px}.fallback{display:none;height:108px;align-items:center;justify-content:center;font-size:42px;opacity:.65}
 .dino .name{text-align:center;font-weight:850;font-size:11.5px;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dino .papers{text-align:center;color:#8da694;font-size:9.8px;margin-top:4px}
 .drawbox{display:flex;flex-direction:column;gap:10px}.screen{min-height:370px;border:1px solid #315f3b;border-radius:15px;background:radial-gradient(circle at 50% 25%,#174326,#09110c 70%);display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;position:relative;overflow:hidden}
 .screen:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,#ffffff0d,transparent);transform:translateX(-100%)}.screen.spinning:after{animation:scan .5s linear infinite}@keyframes scan{to{transform:translateX(100%)}}
@@ -57,29 +57,29 @@ button{border:0;border-radius:11px;padding:13px 14px;font-weight:900;text-transf
   <header class="topbar">
     <div class="brand">
       <h1>Jogo dos <span>Dinos</span></h1>
-      <p>Sorteador oficial • 400 papéis pré-definidos • 40 criaturas • 10 papéis por criatura • 5 papéis premiados</p>
+      <p>Sorteador oficial • 50 papéis • 50 criaturas • 1 papel por criatura • 1 vencedor por rodada</p>
     </div>
-    <div class="badge"><strong>8.750 HEXÁGONOS</strong><small>valor fixo por papel</small></div>
+    <div class="badge"><strong>10.000 HEXÁGONOS</strong><small>valor fixo por papel</small></div>
   </header>
 
-  <section class="stats">
-    <div class="stat"><b>400</b><span>papéis máximos</span></div>
-    <div class="stat"><b>40</b><span>criaturas</span></div>
-    <div class="stat"><b>10</b><span>papéis por criatura</span></div>
-    <div class="stat"><b>5</b><span>papéis premiados</span></div>
-    <div class="stat"><b>525.000</b><span>prêmio por papel</span></div>
+  <section class="stats" title="Rodada cheia: 500.000 hexágonos; prêmio: 230.000 (46%); banca: 270.000 (54%)">
+    <div class="stat"><b>50</b><span>papéis totais</span></div>
+    <div class="stat"><b>50</b><span>criaturas</span></div>
+    <div class="stat"><b>1</b><span>papel por criatura</span></div>
+    <div class="stat"><b>1</b><span>vencedor</span></div>
+    <div class="stat"><b>230.000</b><span>prêmio • 46%</span></div>
   </section>
 
   <div class="main">
     <section class="panel">
-      <div class="panel-head"><h2>Os 40 grupos da rodada</h2><span class="tag">Smart Breeding / Ark Species Images</span></div>
+      <div class="panel-head"><h2>As 50 criaturas da rodada</h2><span class="tag">Smart Breeding / Ark Species Images</span></div>
       <div class="panel-body"><div id="dinoGrid" class="grid"></div></div>
     </section>
 
     <aside class="panel">
       <div class="panel-head"><h2>Sorteio da rodada</h2><span id="roundLabel" class="tag">Rodada #1</span></div>
       <div class="panel-body drawbox">
-        <div id="screen" class="screen"><div class="placeholder"><span class="big">⬡</span>Clique em <b>SORTEAR RODADA</b><br>para sortear a criatura e os 5 papéis premiados.</div></div>
+        <div id="screen" class="screen"><div class="placeholder"><span class="big">⬡</span>Clique em <b>SORTEAR RODADA</b><br>para sortear a criatura vencedora.</div></div>
         <div class="buttons">
           <button id="drawBtn" class="primary">Sortear Rodada</button>
           <button id="newBtn" class="secondary">Nova rodada</button>
@@ -88,34 +88,38 @@ button{border:0;border-radius:11px;padding:13px 14px;font-weight:900;text-transf
           <button id="fullBtn" class="secondary">Tela cheia</button>
         </div>
         <div id="audit" class="audit">Aguardando sorteio.</div>
-        <div class="note">O resultado final usa <b>crypto.getRandomValues()</b>. Primeiro é sorteada 1 criatura entre 40; depois são sorteados 5 números distintos entre os 10 papéis daquele grupo. Se nem todos os 400 papéis tiverem sido vendidos, um papel premiado pode não ter comprador.</div>
+        <div class="note">O resultado final usa <b>crypto.getRandomValues()</b>. Cada uma das 50 criaturas representa exatamente 1 papel e aparece com sua imagem. O sistema sorteia 1 criatura entre as 50; o dono daquele papel recebe <b>46% da arrecadação da rodada cheia: 230.000 hexágonos</b>.</div>
         <div id="history" class="history"></div>
       </div>
     </aside>
   </div>
 
   <section class="panel rules">
-    <div class="panel-head"><h2>Regra da premiação</h2><span class="tag">rodada cheia: 3.500.000 hexágonos</span></div>
+    <div class="panel-head"><h2>Regra da premiação</h2><span class="tag">rodada cheia: 500.000 hexágonos</span></div>
     <div class="panel-body rule-grid">
-      <div class="rule"><strong>1. Papel pré-definido</strong><span>Os papéis são numerados de 001 a 400 e já pertencem a um grupo. Ninguém escreve ou altera números.</span></div>
-      <div class="rule"><strong>2. Sorteio da criatura</strong><span>O sistema seleciona 1 dos 40 grupos com probabilidade igual.</span></div>
-      <div class="rule"><strong>3. Cinco papéis</strong><span>Dentro dos 10 papéis do grupo sorteado, exatamente 5 números diferentes recebem premiação.</span></div>
-      <div class="rule"><strong>4. Prêmio</strong><span>Cada papel premiado vale 525.000 hexágonos. Com 5 papéis, o total máximo de prêmios é 2.625.000.</span></div>
+      <div class="rule"><strong>1. Um papel por criatura</strong><span>Existem 50 papéis no total e cada papel corresponde a uma das 50 criaturas. Não há números nos papéis.</span></div>
+      <div class="rule"><strong>2. Valor do papel</strong><span>Cada papel custa 10.000 hexágonos. Com os 50 vendidos, a rodada arrecada 500.000.</span></div>
+      <div class="rule"><strong>3. Um vencedor</strong><span>O sistema sorteia 1 das 50 criaturas com probabilidade igual. O dono do papel daquela criatura é o vencedor.</span></div>
+      <div class="rule"><strong>4. Prêmio e banca</strong><span>O vencedor recebe 46% da arrecadação da rodada cheia: 230.000 hexágonos. Os 54% restantes, 270.000 hexágonos, ficam para a banca.</span></div>
     </div>
   </section>
 
   <section class="panel map-section">
-    <div class="panel-head"><h2>Mapa fixo dos 400 papéis</h2><span class="tag">10 papéis por grupo</span></div>
+    <div class="panel-head"><h2>Os 50 papéis da rodada</h2><span class="tag">1 criatura = 1 papel</span></div>
     <div class="panel-body"><div id="paperMap" class="map-grid"></div></div>
   </section>
 
-  <footer class="footer">Imagens carregadas do projeto Ark Species Images, destinado ao ARK Smart Breeding e disponibilizado sob licença MIT. O HTML funciona localmente; conexão com a internet é necessária apenas para carregar as imagens externas.</footer>
+  <footer class="footer">As 50 criaturas usam imagens do projeto Ark Species Images, destinado ao ARK Smart Breeding e disponibilizado sob licença MIT. O HTML funciona localmente; conexão com a internet é necessária para carregar as imagens externas.</footer>
 </div>
 
 <script>
-const PAPER_PRICE = 8750;
-const PRIZE_PER_WINNING_PAPER = 525000;
-const PRIZE_COUNT = 5;
+const PAPER_PRICE = 10000;
+const TOTAL_PAPERS = 50;
+const TOTAL_FULL_ROUND = PAPER_PRICE * TOTAL_PAPERS;
+const WINNER_SHARE = 0.46;
+const PRIZE_PER_WINNING_PAPER = TOTAL_FULL_ROUND * WINNER_SHARE;
+const BANK_FULL_ROUND = TOTAL_FULL_ROUND - PRIZE_PER_WINNING_PAPER;
+const PRIZE_COUNT = 1;
 const IMG_BASE = 'https://raw.githubusercontent.com/arkutils/species-images/main/images/';
 
 const rawDinos = [
@@ -128,7 +132,7 @@ const rawDinos = [
  ['Argentavis','Argentavis'],
  ['Quetzal','Quetzal'],
  ['Rex','Rex'],
- ['Spinosaurus','Spinosaurus'],
+ ['Spino','Spino'],
  ['Triceratops','Triceratops'],
  ['Stegosaurus','Stegosaurus'],
  ['Pteranodon','Pteranodon'],
@@ -158,25 +162,41 @@ const rawDinos = [
  ['Sabertooth','Sabertooth'],
  ['Procoptodon','Procoptodon'],
  ['Castoroides','Castoroides'],
- ['Baryonyx','Baryonyx']
+ ['Baryonyx','Baryonyx'],
+ ['Carnotaurus','Carnotaurus'],
+ ['Allosaurus','Allosaurus'],
+ ['Iguanodon','Iguanodon'],
+ ['Sarco','Sarco'],
+ ['Beelzebufo','Beelzebufo'],
+ ['Doedicurus','Doedicurus'],
+ ['Tapejara','Tapejara'],
+ ['Brontosaurus','Brontosaurus'],
+ ['Diplodocus','Diplodocus'],
+ ['Megatherium','Megatherium']
 ];
 
 const dinos = rawDinos.map((x,i)=>({
-  id:i+1,name:x[0],repo:x[1],start:i*10+1,end:i*10+10
+  id:i+1,name:x[0],repo:x[1]
 }));
 
 function pad(n){return String(n).padStart(3,'0')}
 function groupPad(n){return String(n).padStart(2,'0')}
-function papersText(d){return `${pad(d.start)}–${pad(d.end)}`}
-function paperList(d){return Array.from({length:10},(_,i)=>d.start+i)}
+function paperLabel(d){return d.name}
 
 function imgCandidates(d){
-  const n=encodeURIComponent(d.repo);
-  return [
-    IMG_BASE+n+'_ASA.png',
-    IMG_BASE+n+'.png',
-    IMG_BASE+n+'_ASE.png'
-  ];
+  const names=[d.repo,d.name].filter((v,i,a)=>v && a.indexOf(v)===i);
+  const urls=[];
+  names.forEach(name=>{
+    const n=encodeURIComponent(name);
+    urls.push(
+      IMG_BASE+n+'_ASA.png',
+      IMG_BASE+n+'.png',
+      IMG_BASE+n+'_ASA_m.png',
+      IMG_BASE+n+'_m.png',
+      IMG_BASE+n+'_ASE.png'
+    );
+  });
+  return [...new Set(urls)];
 }
 function imgEl(d){
   const urls=imgCandidates(d), img=document.createElement('img');
@@ -192,25 +212,25 @@ function imgEl(d){
 const grid=document.getElementById('dinoGrid');
 dinos.forEach(d=>{
   const card=document.createElement('div');card.className='dino';card.id='dino-'+d.id;
-  card.innerHTML=`<div class="num">${groupPad(d.id)}</div>`;
+  card.innerHTML='';
   card.appendChild(imgEl(d));
   const fb=document.createElement('div');fb.className='fallback';fb.textContent='🦖';card.appendChild(fb);
-  card.insertAdjacentHTML('beforeend',`<div class="name">${d.name}</div><div class="papers">Papéis ${papersText(d)}</div>`);
+  card.insertAdjacentHTML('beforeend',`<div class="name">${d.name}</div><div class="papers">1 papel • 10.000 hexágonos</div>`);
   grid.appendChild(card);
 });
 
 const paperMap=document.getElementById('paperMap');
 dinos.forEach(d=>{
   const el=document.createElement('div');el.className='map-item';
-  el.innerHTML=`<b>${groupPad(d.id)} — ${d.name}</b><div>Papéis ${papersText(d)} • 10 unidades</div>`;
+  el.innerHTML=`<b>${d.name}</b><div>1 papel • 10.000 hexágonos</div>`;
   paperMap.appendChild(el);
 });
 
-let round=Number(localStorage.getItem('jdd_v2_round')||1);
+let round=Number(localStorage.getItem('jdd_v6_50_round')||1);
 let drawn=false;
 let lastResult=null;
 let historyData=[];
-try{historyData=JSON.parse(localStorage.getItem('jdd_v2_history')||'[]')}catch(e){historyData=[]}
+try{historyData=JSON.parse(localStorage.getItem('jdd_v6_50_history')||'[]')}catch(e){historyData=[]}
 
 const screen=document.getElementById('screen');
 const audit=document.getElementById('audit');
@@ -244,29 +264,27 @@ function highlight(id){
   document.getElementById('dino-'+id)?.classList.add('winner');
 }
 
-function renderResult(d,winners,meta){
+function renderResult(d,meta){
   screen.innerHTML='';
   const result=document.createElement('div');result.className='result';
   result.innerHTML='<div class="phase">Resultado oficial</div>';
   result.appendChild(imgEl(d));
   const fb=document.createElement('div');fb.className='fallback';fb.textContent='🦖';result.appendChild(fb);
   result.insertAdjacentHTML('beforeend',`
-    <div class="rnum">GRUPO ${groupPad(d.id)} • PAPÉIS ${papersText(d)}</div>
     <div class="rname">${d.name}</div>
-    <div class="winners-title">5 papéis premiados</div>
-    <div class="winner-papers">${winners.map(n=>`<span class="winner-paper">${pad(n)}</span>`).join('')}</div>
-    <div class="prize-line">525.000 hexágonos por papel premiado</div>
-    <div class="total-line">Total destinado aos 5 papéis: 2.625.000 hexágonos</div>`);
+    <div class="winners-title">Papel vencedor</div>
+    <div class="winner-papers"><span class="winner-paper">${d.name}</span></div>
+    <div class="prize-line">230.000 hexágonos para o vencedor • 46%</div>
+    <div class="total-line">Rodada cheia: 500.000 • Banca: 270.000 hexágonos • 54%</div>`);
   screen.appendChild(result);highlight(d.id);
-  audit.innerHTML=`<b>Rodada:</b> #${round}<br><b>Data/hora:</b> ${meta.when}<br><b>Uint32 do grupo:</b> ${meta.groupRaw}<br><b>Grupo:</b> ${groupPad(d.id)} — ${d.name}<br><b>Uint32 dos 5 papéis:</b> ${meta.ticketRaw.join(', ')}<br><b>Papéis:</b> ${winners.map(pad).join(', ')}`;
+  audit.innerHTML=`<b>Rodada:</b> #${round}<br><b>Data/hora:</b> ${meta.when}<br><b>Uint32 da criatura:</b> ${meta.groupRaw}<br><b>Criatura vencedora:</b> ${d.name}<br><b>Prêmio:</b> 230.000 hexágonos (46%)<br><b>Banca:</b> 270.000 hexágonos (54%)`;
 }
-
 function renderHistory(){
   if(!historyData.length){history.innerHTML='<div class="empty">Nenhuma rodada registrada.</div>';return}
   history.innerHTML=historyData.slice().reverse().map(h=>`
     <div class="history-row">
-      <div class="hr-top"><b>#${h.round} • ${groupPad(h.dino)} — ${h.name}</b><span>${h.time}</span></div>
-      <div class="tickets">Papéis: ${h.winners.map(pad).join(', ')}</div>
+      <div class="hr-top"><b>#${h.round} • ${h.name}</b><span>${h.time}</span></div>
+      <div class="tickets">Papel vencedor: ${h.name} • Prêmio: 230.000 (46%)</div>
     </div>`).join('');
 }
 
@@ -276,35 +294,26 @@ async function draw(){
 
   const phase1=setInterval(()=>{
     const x=dinos[Math.floor(Math.random()*dinos.length)];
-    screen.innerHTML=`<div class="placeholder"><div class="phase">Sorteando criatura...</div><span class="big">${groupPad(x.id)}</span>${x.name}</div>`;
+    screen.innerHTML=`<div class="placeholder"><div class="phase">Sorteando criatura vencedora...</div><span class="big">🦖</span>${x.name}</div>`;
   },60);
-  await new Promise(r=>setTimeout(r,1500));clearInterval(phase1);
+  await new Promise(r=>setTimeout(r,1800));clearInterval(phase1);
 
   let groupRnd,d;
   try{groupRnd=secureIndex(dinos.length);d=dinos[groupRnd.index]}
   catch(err){drawn=false;drawBtn.disabled=false;screen.classList.remove('spinning');alert(err.message);return}
 
-  const visualPool=paperList(d);
-  const phase2=setInterval(()=>{
-    const shuffled=[...visualPool].sort(()=>Math.random()-.5).slice(0,5).sort((a,b)=>a-b);
-    screen.innerHTML=`<div class="placeholder"><div class="phase">${d.name} sorteado • escolhendo 5 papéis...</div><div class="winner-papers">${shuffled.map(n=>`<span class="winner-paper">${pad(n)}</span>`).join('')}</div></div>`;
-  },85);
-  await new Promise(r=>setTimeout(r,1300));clearInterval(phase2);
-
-  const ticketRnd=secureSampleDistinct(paperList(d),PRIZE_COUNT);
   const now=new Date(), when=now.toLocaleString('pt-BR');
   screen.classList.remove('spinning');
-  renderResult(d,ticketRnd.selected,{when,groupRaw:groupRnd.raw,ticketRaw:ticketRnd.raw});
+  renderResult(d,{when,groupRaw:groupRnd.raw});
 
-  lastResult={round,dino:d.id,name:d.name,winners:ticketRnd.selected,time:now.toLocaleTimeString('pt-BR'),when,iso:now.toISOString(),groupRaw:groupRnd.raw,ticketRaw:ticketRnd.raw};
+  lastResult={round,dino:d.id,name:d.name,time:now.toLocaleTimeString('pt-BR'),when,iso:now.toISOString(),groupRaw:groupRnd.raw};
   historyData.push(lastResult);
-  localStorage.setItem('jdd_v2_history',JSON.stringify(historyData));
+  localStorage.setItem('jdd_v6_50_history',JSON.stringify(historyData));
   renderHistory();
 }
-
 function newRound(){
   if(!drawn && !confirm('A rodada atual ainda não foi sorteada. Deseja avançar mesmo assim?'))return;
-  round++;localStorage.setItem('jdd_v2_round',String(round));drawn=false;lastResult=null;drawBtn.disabled=false;updateRound();
+  round++;localStorage.setItem('jdd_v6_50_round',String(round));drawn=false;lastResult=null;drawBtn.disabled=false;updateRound();
   document.querySelectorAll('.dino').forEach(x=>x.classList.remove('winner'));
   screen.innerHTML='<div class="placeholder"><span class="big">⬡</span>Nova rodada pronta.<br>Clique em <b>SORTEAR RODADA</b>.</div>';
   audit.textContent='Aguardando sorteio.';
@@ -312,12 +321,17 @@ function newRound(){
 
 async function copyResult(){
   if(!lastResult){alert('Faça um sorteio primeiro.');return}
-  const text=`JOGO DOS DINOS — RODADA #${lastResult.round}\nGrupo: ${groupPad(lastResult.dino)} — ${lastResult.name}\nPapéis premiados: ${lastResult.winners.map(pad).join(', ')}\nPrêmio por papel: 525.000 hexágonos\nData/hora: ${lastResult.when}`;
+  const text=`JOGO DOS DINOS — RODADA #${lastResult.round}
+Criatura vencedora: ${lastResult.name}
+Valor do papel: 10.000 hexágonos
+Prêmio do vencedor: 230.000 hexágonos (46%)
+Arrecadação com 50 papéis: 500.000 hexágonos
+Banca na rodada cheia: 270.000 hexágonos (54%)
+Data/hora: ${lastResult.when}`;
   try{await navigator.clipboard.writeText(text);alert('Resultado copiado.')}catch(e){prompt('Copie o resultado:',text)}
 }
-
 function clearHistory(){
-  if(confirm('Apagar todo o histórico salvo neste navegador?')){historyData=[];lastResult=null;localStorage.removeItem('jdd_v2_history');renderHistory()}
+  if(confirm('Apagar todo o histórico salvo neste navegador?')){historyData=[];lastResult=null;localStorage.removeItem('jdd_v6_50_history');renderHistory()}
 }
 
 async function toggleFull(){
